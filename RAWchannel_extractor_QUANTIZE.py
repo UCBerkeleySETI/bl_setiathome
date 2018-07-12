@@ -1,6 +1,7 @@
 
 #plot_coarse_channel.py fnameIN fFreq fnameOUT
-
+import time
+start_time = time.time()
 import glob
 import os
 import sys
@@ -8,6 +9,7 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 import pdb
+import cProfile
 
 if len(sys.argv) != 4:
         print '\nmissing information\n'
@@ -85,6 +87,7 @@ NewTotBlocSize = int(NumBlockTotal * nChanSize)
 fLowChan = fLow + (nChanOI)*dChanBW
 fHighChan = fLowChan + dChanBW
 TotCenFreq = (fLowChan+fHighChan)/2.
+
 idx = -1
 CurrBlkIdx = -1
 output_file = open(fileout,'wb')
@@ -244,3 +247,4 @@ for fname in all_filenames:
         fread.close()                   # close current file
 
 output_file.close()
+print("--- %s seconds ---" % (time.time() - start_time))
