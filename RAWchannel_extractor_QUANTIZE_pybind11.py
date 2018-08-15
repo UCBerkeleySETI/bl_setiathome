@@ -87,6 +87,7 @@ for fname in all_filenames:
 
 NumBlockTotal = int(sum(BlocksPerFile))
 NewTotBlocSize = int(NumBlockTotal * nChanSize)
+bit_reduce_factor = 4
 
 fLowChan = fLow + (nChanOI)*dChanBW
 fHighChan = fLowChan + dChanBW
@@ -139,7 +140,7 @@ for fname in all_filenames:
                                 teststr = teststr + ' '*(80-len(teststr))
                                 currline = teststr
                         if str(currline[0:9]) == 'BLOCSIZE=':   # change block size value
-                                NewVal = int(nChanSize)
+                                NewVal = int(nChanSize/bit_reduce_factor)
                                 NewValStr = str(NewVal)
                                 if len(NewValStr) > 20:
                                         NewValStr = NewValStr[0:20]
