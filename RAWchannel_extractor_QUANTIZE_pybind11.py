@@ -46,11 +46,20 @@ while currline[0:3] != 'END':           # until reaching end of header
         if currline[0:9] == 'OBSFREQ =':        # read cenral frequency
                 cenfreq = float(currline[9:])
         if currline[0:9] == 'OBSBW   =':        # read bandwidth
-                obsbw = float(currline[9:].split("'")[1])
+		if "'" in currline:
+	                obsbw = float(currline[9:].split("'")[1])
+		else:
+			obsbw = float(currline[9:])
         if currline[0:9] == 'OBSNCHAN=':        # read number of coarse channels
-                obsnchan = float(currline[9:].split("'")[1])
+		if "'" in currline:
+                	obsnchan = float(currline[9:].split("'")[1])
+		else:
+			obsnchan = float(currline[9:])
         if currline[0:9] == 'DIRECTIO=':        # read directio flag
-                ndirectio = float(currline[9:].split("'")[1])
+		if "'" in currline:
+	                ndirectio = float(currline[9:].split("'")[1])
+		else:
+			ndirectio = float(currline[9:])
         if currline[0:9] == 'BLOCSIZE=':        # read block size
                 nblocsize = float(currline[9:])
         nHeaderLines = nHeaderLines + 1         # counts number of lines in header
